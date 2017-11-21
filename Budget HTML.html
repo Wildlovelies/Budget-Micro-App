@@ -1,0 +1,160 @@
+<html>
+	<head>
+		<title>My Budget</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	</head>
+	<body>
+	
+		<div class="container">
+			<div class="page-header">
+				<h1> My Budget </h1>
+			</div>
+			<div class="col-lg-6">
+				<table class="table table-striped table-hover ">
+					<tr>
+						<th> <form action="/action_page.php">
+							Please update all forms use the enter key after each number to ensure updating form. (note tithe is set to 10% hard coded)<br>
+							<!-- HTML text and text boxes with id tags-->
+							Hourly Wage:<br>
+							<input type="text" name="Wage" id="Wage" value = "1">
+								<br>
+							Hours:<br>
+							<input type="text" name="Hours" id="Hours" value = "1">
+							<br>
+							Net Pay: <br>
+							<input type="text" name="Net" readonly id="Net" value = "1">
+							<br>
+							Taxes: <br>
+							<input type="text" name="Tax" readonly id="Tax" value = "1">
+							<br>
+							Sub Total: <br>
+							<input type="text" name="Sub" id="Sub"  readonly value = "1">
+							<br>
+							Tithe:<br>
+							<input type="text" name="Tithe" readonly id="Tithe" value = "1">
+							<br>
+							Savings: <br>
+							<input type="text" name="Savings" id="Savings" value = "1">
+							<br>
+							Rent: <br>
+							<input type="text" name="Rent" id="Rent" value = "1"<br>
+							<br>
+							Car: <br>
+							<input type="text" name="Car" id="Car" value = "1">
+							<br>
+							Phone: <br>
+							<input type="text" name="Phone" id="Phone" value = "1">
+							<br>
+							Food: <br>
+							<input type="text" name="Food" id="Food" value = "1">
+							<br>
+							Internet: <br>
+							<input type="text" name="Internet" id="Internet" value = "1">
+							<br>
+							Entertainment: <br>
+							<input type="text" name="Entertainment" id="Entertainment" value = "1">
+							<br>
+							Remainder: <br>
+							<input type="text" name="Remainder" id="Remainder" value = "1">
+							
+							</form>
+							
+						
+						
+					</tr>
+					
+				</table>
+				<script type="text/javascript">
+				var Wage2 = document.getElementById('Wage'),
+					Hours2 = document.getElementById('Hours'),
+					Net2 = document.getElementById('Net'),
+					Tax2 = document.getElementById('Tax'),
+					Sub2 = document.getElementById('Sub'),
+					Tithe2 = document.getElementById('Tithe'),
+					Savings2 = document.getElementById('Savings'),
+					Rent2 = document.getElementById('Rent'),
+					Car2 = document.getElementById('Car'),
+					Phone2 = document.getElementById('Phone'),
+					Food2 = document.getElementById('Food'),
+					Internet2 = document.getElementById('Internet'),
+					Entertainment2 = document.getElementById('Entertainment'),
+					Remainder2 = document.getElementById('Remainder');
+					<!-- Initialize JavaScript variables and link them to html text boxes-->
+					<!-- Naming Conventions as follows: HTML variables have no numbers, JavaScript initial variables use the number 2 after, all else use increased number intervals as they are called and needing to be saved. (ex: Tax3, used to calculate the tax math and save it back to Tax2)-->
+					
+				<!-- On Key Stroke updates to Wage text box, with updates for affected variables-->
+				Wage2.onkeydown = function() {
+					var net3 = parseFloat(Wage2.value) * parseFloat(Hours2.value);
+					Net2.value = !isNaN(net3) ? net3 : '';
+					
+					var Tax3 = parseFloat(Net2.value) * .2509;
+						Tax2.value = !isNaN(Tax3) ? Tax3.toPrecision(3) : '';
+					
+					var Remainder3 = parseFloat(Net2.value) - parseFloat(Tax2.value) - parseFloat(Tithe2.value) - parseFloat(Savings2.value) - parseFloat(Rent2.value) - parseFloat(Car2.value) - parseFloat(Phone2.value) - parseFloat(Food2.value) - parseFloat(Internet2.value) - parseFloat(Entertainment2.value);
+						Remainder2.value = Remainder3;
+					
+					var Tithe3 = parseFloat(Net2.value)	/ 10;
+						Tithe2.value = !isNaN(Tithe3) ? Tithe3.toPrecision(3) : '';
+						
+					var Sub3 = parseFloat(Net2.value) - parseFloat(Tax2.value);
+						Sub2.value = !isNaN(Sub3) ? Sub3 : '';
+											}
+				<!-- On Key Stroke updates to Hours text box, with updates for affected variables-->	
+				Hours2.onkeydown = function() {
+					var net3 = parseFloat(Wage2.value) * parseFloat(Hours2.value);
+					Net2.value = !isNaN(net3) ? net3 : '';
+					
+					var Tax3 = parseFloat(Net2.value) * .2509;
+						Tax2.value = !isNaN(Tax3) ? Tax3.toPrecision(3) : '';
+						
+					var Tithe3 = parseFloat(Net2.value)	/ 10;
+						Tithe2.value = !isNaN(Tithe3) ? Tithe3 : '';
+					
+					var Remainder3 = parseFloat(Net2.value) - parseFloat(Tax2.value) - parseFloat(Tithe2.value) - parseFloat(Savings2.value) - parseFloat(Rent2.value) - parseFloat(Car2.value) - parseFloat(Phone2.value) - parseFloat(Food2.value) - parseFloat(Internet2.value) - parseFloat(Entertainment2.value);
+						Remainder2.value = Remainder3;
+						
+					var Sub3 = parseFloat(Net2.value) - parseFloat(Tax2.value);
+						Sub2.value = !isNaN(Sub3) ? Sub3 : '';
+					}
+				
+				<!-- On Key Stroke updates to Savings text box, with updates for affected variables-->	
+				Savings2.onkeydown = function() {
+					var Remainder3 = parseFloat(Net2.value) - parseFloat(Tax2.value) - parseFloat(Tithe2.value) - parseFloat(Savings2.value) - parseFloat(Rent2.value) - parseFloat(Car2.value) - parseFloat(Phone2.value) - parseFloat(Food2.value) - parseFloat(Internet2.value) - parseFloat(Entertainment2.value);
+						Remainder2.value = !isNaN(Remainder3) ? Remainder3 : '';
+					}
+				<!-- On Key Stroke updates to Rent text box, with updates for affected variables-->	
+				Rent2.onkeydown = function() {
+					var Remainder3 = parseFloat(Net2.value) - parseFloat(Tax2.value) - parseFloat(Tithe2.value) - parseFloat(Savings2.value) - parseFloat(Rent2.value) - parseFloat(Car2.value) - parseFloat(Phone2.value) - parseFloat(Food2.value) - parseFloat(Internet2.value) - parseFloat(Entertainment2.value);
+						Remainder2.value = !isNaN(Remainder3) ? Remainder3 : '';
+					}
+				<!-- On Key Stroke updates to Car text box, with updates for affected variables-->	
+				Car2.onkeydown = function() {
+					var Remainder3 = parseFloat(Net2.value) - parseFloat(Tax2.value) - parseFloat(Tithe2.value) - parseFloat(Savings2.value) - parseFloat(Rent2.value) - parseFloat(Car2.value) - parseFloat(Phone2.value) - parseFloat(Food2.value) - parseFloat(Internet2.value) - parseFloat(Entertainment2.value);
+						Remainder2.value = !isNaN(Remainder3) ? Remainder3 : '';
+					}
+				<!-- On Key Stroke updates to Phone text box, with updates for affected variables-->	
+				Phone2.onkeydown = function() {
+					var Remainder3 = parseFloat(Net2.value) - parseFloat(Tax2.value) - parseFloat(Tithe2.value) - parseFloat(Savings2.value) - parseFloat(Rent2.value) - parseFloat(Car2.value) - parseFloat(Phone2.value) - parseFloat(Food2.value) - parseFloat(Internet2.value) - parseFloat(Entertainment2.value);
+						Remainder2.value = !isNaN(Remainder3) ? Remainder3 : '';
+					}
+				<!-- On Key Stroke updates to Wage Food box, with updates for affected variables-->	
+				Food2.onkeydown = function() {
+					var Remainder3 = parseFloat(Net2.value) - parseFloat(Tax2.value) - parseFloat(Tithe2.value) - parseFloat(Savings2.value) - parseFloat(Rent2.value) - parseFloat(Car2.value) - parseFloat(Phone2.value) - parseFloat(Food2.value) - parseFloat(Internet2.value) - parseFloat(Entertainment2.value);
+						Remainder2.value = !isNaN(Remainder3) ? Remainder3 : '';
+					}
+				<!-- On Key Stroke updates to Internet text box, with updates for affected variables-->	
+				Internet2.onkeydown = function() {
+					var Remainder3 = parseFloat(Net2.value) - parseFloat(Tax2.value) - parseFloat(Tithe2.value) - parseFloat(Savings2.value) - parseFloat(Rent2.value) - parseFloat(Car2.value) - parseFloat(Phone2.value) - parseFloat(Food2.value) - parseFloat(Internet2.value) - parseFloat(Entertainment2.value);
+						Remainder2.value = !isNaN(Remainder3) ? Remainder3 : '';
+					}
+				<!-- On Key Stroke updates to Entertainment text box, with updates for affected variables-->	
+				Entertainment2.onkeydown = function() {
+					var Remainder3 = parseFloat(Net2.value) - parseFloat(Tax2.value) - parseFloat(Tithe2.value) - parseFloat(Savings2.value) - parseFloat(Rent2.value) - parseFloat(Car2.value) - parseFloat(Phone2.value) - parseFloat(Food2.value) - parseFloat(Internet2.value) - parseFloat(Entertainment2.value);
+						Remainder2.value = !isNaN(Remainder3) ? Remainder3 : '';
+					}
+					
+				</script>	
+			</div>
+		</div>
+		</body>
+	</html>
